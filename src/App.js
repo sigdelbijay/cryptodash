@@ -1,10 +1,11 @@
 import './App.css';
+import { AppLayout } from './AppLayout'
 
 function App() {
   return (
-    <div className="App">
-      <div>Welcome to cryptodash</div>
-    </div>
+    <AppLayout>
+      Welcome to cryptodash
+    </AppLayout>
   );
 }
 
