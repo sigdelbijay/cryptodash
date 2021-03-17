@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import {AppContext} from './AppProvider'
 
 const Bar = styled.div`
   display: grid;
@@ -13,16 +14,23 @@ const ControlButtonElem = styled.div`
     text-shadow: 0px 0px 60px #03ff03;
   `}
 `
-function ControlButton({ name, active }) {
+function ControlButton({ name}) {
   return (
-    <ControlButtonElem active={active}>
-      {toProperCase(name)}
-    </ControlButtonElem>
+    <AppContext.Consumer>
+      {({ page, setPage }) => (
+        <ControlButtonElem
+          active={page === name}
+          onClick={() => setPage(name)}
+        >
+          {toProperCase(name)}
+        </ControlButtonElem>
+      )}
+    </AppContext.Consumer>
   )
 }
 
 function toProperCase(lower) {
-  return lower.charAt(0).toUpperCase() + lower.substr(1);
+  return lower.charAt(0).toUpperCase() + lower.substr(1)
 }
 
 export default function () {
@@ -30,7 +38,7 @@ export default function () {
     <Logo>Cryptodash</Logo>
     <div/>
     <ControlButton active name="dashboard"/>
-    <ControlButton name="setting"/>
+    <ControlButton name="settings"/>
     
   </Bar>
 }
