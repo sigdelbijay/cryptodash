@@ -7,10 +7,31 @@ export class AppProvider extends React.Component {
     super(props)
     this.state = {
       page: 'dashboard',
-      setPage: this.setPage
+      ...this.savedSettings(),
+      setPage: this.setPage,
+      confirmFavourites: this.confirmFavourites
     }
   }
   setPage = page => this.setState({ page })
+
+  savedSettings() {
+    let cryptodash = JSON.parse(localStorage.getItem('Cryptodash'))
+    if (!cryptodash) {
+      return { page: 'settings', firstVisit: true }
+    }
+    return {}
+  }
+
+  confirmFavourites = () => {
+    this.setState({
+      firstVisit: false,
+      page: 'dashboard'
+    });
+    localStorage.setItem('Cryptodash', JSON.stringify({
+      test: 'hello'
+    }))
+  }
+
   render() {
     return (
       <AppContext.Provider value={this.state}>
@@ -18,10 +39,16 @@ export class AppProvider extends React.Component {
       </AppContext.Provider>
     )
   }
+}
+
+
+
+
+
+//functional way
   // const [page, setPage] = useState('dashboard')
   // return (
   //   <AppContext.Provider value={page, setPage}>
   //     {props.children}
   //   </AppContext.Provider>
   // )
-}
