@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
+import cc from 'cryptocompare'
+import apiKey from '../config'
+cc.setApiKey(apiKey['cryptocompare-api-key'])
 
 export const AppContext = React.createContext()
 
@@ -13,6 +16,15 @@ export class AppProvider extends React.Component {
     }
   }
   setPage = page => this.setState({ page })
+
+  componentDidMount = () => {
+    this.fetchCoins()
+  }
+
+  fetchCoins = async () => {
+    let coinList = (await cc.coinList()).Data
+    this.setState({coinList})
+  }
 
   savedSettings() {
     let cryptodash = JSON.parse(localStorage.getItem('Cryptodash'))
