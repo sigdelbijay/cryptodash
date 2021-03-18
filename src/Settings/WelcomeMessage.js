@@ -1,6 +1,5 @@
 import React from 'react'
 import {AppContext} from '../App/AppProvider'
-import ConfirmButton from './ConfirmButton'
 
 export default function WelcomeMessage() {
   return (
