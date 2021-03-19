@@ -1,17 +1,22 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { AppContext } from '../App/AppProvider'
-import { SelectableTile } from '../Shared/Tile'
+import CoinTile from '../Settings/CoinTile'
 
 export const CoinGridStyled = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 14px;
+  margin-top: 40px;
 `
-export default function () {
+function getCoinsToDisplay(coinList, topSection, favourites) {
+  return topSection ?  favourites : Object.keys(coinList).slice(0, 100);
+}
+
+export default function ({topSection}) {
   return <AppContext.Consumer>
-    {({ coinList }) => <CoinGridStyled>
-      {Object.keys(coinList).map(coinKey => 
-        <SelectableTile key={Math.random()}>{coinKey}</SelectableTile>
+    {({ coinList, favourites, addCoin }) => <CoinGridStyled>
+      {getCoinsToDisplay(coinList, topSection, favourites).map(coinKey => 
+        <CoinTile key={coinKey} coinKey={coinKey} topSection={topSection} onClick={() => { addCoin() }}>{coinKey}</CoinTile>
         )}
     </CoinGridStyled>}
   </AppContext.Consumer>
