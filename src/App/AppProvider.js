@@ -31,6 +31,8 @@ export class AppProvider extends React.Component {
 
   fetchCoins = async () => {
     let coinList = (await cc.coinList()).Data
+    console.log("state", this.state)
+    console.log("cryptodash", localStorage.getItem('Cryptodash'))
     this.setState({coinList})
   }
 
@@ -72,8 +74,8 @@ export class AppProvider extends React.Component {
         console.warn('Fetch price error: ', e)
       }
     }
+    prices = prices.filter(price => Object.keys(price).length)
     this.setState({ prices })
-    console.log(prices);
   }
 
   confirmFavourites = () => {

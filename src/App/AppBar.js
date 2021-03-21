@@ -34,11 +34,12 @@ function toProperCase(lower) {
 }
 
 export default function () {
-  return <Bar>
-    <Logo>Cryptodash</Logo>
-    <div/>
-    <ControlButton active name="dashboard"/>
-    <ControlButton name="settings"/>
-    
-  </Bar>
+  return (
+    <Bar>
+      <Logo>Cryptodash</Logo>
+      <div/>
+      <ControlButton active name="dashboard"/>
+      <ControlButton name="settings"/>
+    </Bar>
+  )
 }

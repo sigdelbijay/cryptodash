@@ -18,12 +18,14 @@ export const CenterDiv = styled.div`
   justify-content: center;
 `
 export default function () {
-  return <AppContext.Consumer>
-    {({ confirmFavourites }) => <CenterDiv>
-      <ConfirmButtonStyled onClick={confirmFavourites}>
-        Confirm Favourites
-      </ConfirmButtonStyled>
-    </CenterDiv>
-    }
-  </AppContext.Consumer>
+  return (
+    <AppContext.Consumer>
+      {({ confirmFavourites }) => <CenterDiv>
+        <ConfirmButtonStyled onClick={confirmFavourites}>
+          Confirm Favourites
+        </ConfirmButtonStyled>
+      </CenterDiv>
+      }
+    </AppContext.Consumer>
+  )
 }
