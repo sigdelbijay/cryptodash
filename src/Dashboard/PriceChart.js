@@ -6,9 +6,12 @@ import {Tile} from '../Shared/Tile'
 export default function() {
   return (
     <AppContext.Consumer>
-      {({ }) =>
+      {({historical}) =>
         <Tile>
-          <ReactHighCharts config={HighChartsConfig()}/>
+          {historical
+            ? <ReactHighCharts config={HighChartsConfig(historical)}/>
+            : <div>Loading Historical Data</div>
+          }
         </Tile>
       }
     </AppContext.Consumer>
