@@ -14,5 +14,3 @@ export default function() {
     </AppContext.Consumer>
   )
 }
-
-// https://github.com/highcharts/highcharts/blob/master/js/Extensions/Themes/DarkBlue.js
